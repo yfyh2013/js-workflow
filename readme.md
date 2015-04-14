@@ -13,8 +13,14 @@ npm i
 you can try the workflow by running :
 
 `
-./node_modules/babel/bin/babel-node workflow.js
+./node_modules/babel/bin/babel-node index.js
 `
+
+### Why call with babel-node ?
+
+Because js-workflow uses ES6 (aka ES2015, aka Harmony) features which are not supported, for the moment by nodejs, even using the harmony flag.
+
+On browser, you may probably have to transpile using babel to ES5.
 
 ## License
 
