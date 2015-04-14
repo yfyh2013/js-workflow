@@ -110,6 +110,7 @@ class ConsoleNode extends Node {
 /**
  * ConditionnalNode can run only if the condition passed in params is true.
  * Takes an expression or a function, condition needs to be evaluated to boolean true or false only (strict equality, "true" will correspond to false).
+ * It is like an XOR split
  */
 class ConditionnalNode extends Node {
     constructor(condition) {
@@ -170,9 +171,9 @@ class SynchronizingNode extends Node {
     }
 }
 /**
- * SynchronizingNode is the reprenstation of logical operator AND
+ * SynchronizingNode is the reprenstation of logical operator OR
  */
-class SynchronizingNode extends Node {
+class MergeNode extends Node {
     constructor() {
         super();
         this.inNodes = [];
