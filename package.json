@@ -1,0 +1,27 @@
+{
+    "name": "api-dmp",
+    "version": "1.0.0",
+    "subdomain": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Companeo/js-workflow.git"
+    },
+    "domains": [],
+    "scripts": {},
+    "engines": {
+        "node": "0.12.x"
+    },
+    "dependencies": {
+        "babel": "^5.1.2",
+        "grunt": "^0.4.5",
+        "grunt-cli": "^0.1.13",
+        "load-grunt-tasks": "^3.1.0",
+        "time-grunt": "^1.1.0"
+    },
+    "devDependencies": {
+        "grunt-eslint": "^9.0.0",
+        "grunt-jsonlint": "^1.0.4",
+        "grunt-plato": "^1.2.1",
+        "plato": "^1.4.0"
+    }
+}
