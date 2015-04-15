@@ -2,6 +2,10 @@
 
 ## Version 1.1
 
+Introducing correct usage via npm and require method.
+
+## Version 1.1
+
 Introducing some missing things to 1.0 :
 - XorMergeNode, this node accepts only one input node with a success status. 0 or more than one will put this node's status in "failed". 
 - failure callback for ConditionnalNode and XorMergeNode, this kind of callback only run when the node fails.
