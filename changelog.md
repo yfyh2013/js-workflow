@@ -1,10 +1,8 @@
 # Changelog
 
-## Version 1.2
+## Version 1.1.2
 
-Introducing :
-- Unit tests with Jasmine
-- Driver storage features (with ConsoleDriver, MongoDriver, FileDriver)
+Put dev dependencies in devDependencies
 
 ## Version 1.1.1
 
