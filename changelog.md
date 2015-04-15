@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.1.6
+
+Fix the undefined xorMerge error
+
 ## Version 1.1.5
 
 Build process. Allows to develop this framework in ES6 and converts it into an ES5 compatible package.
