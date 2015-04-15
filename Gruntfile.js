@@ -12,13 +12,26 @@ module.exports = function (grunt) {
         // Fake Yeoman behaviour
         pkg: grunt.file.readJSON('package.json'),
 
+        babel: {
+            lib: {
+                files: {
+                    "lib/conditionnalNode.js": "src/conditionnalNode.js",
+                    "lib/mergeNode.js": "src/mergeNode.js",
+                    "lib/node.js": "src/node.js",
+                    "lib/synchronizingNode.js": "src/synchronizingNode.js",
+                    "lib/workflow.js": "src/workflow.js",
+                    "lib/xorMergeNode.js": "src/xorMergeNode.js"
+                }
+            }
+        },
+
         eslint: {
             options: {
                 configFile: '.eslint.rc'
             },
             target: [
                 '*.js',
-                'app/**/*.js',
+                'src/**/*.js',
                 'tests/*.js'
             ]
         },
@@ -28,7 +41,7 @@ module.exports = function (grunt) {
             all: {
                 src: [
                     '*.json',
-                    'app/**/*.json',
+                    'src/**/*.json',
                     'tests/**/*.json'
                 ]
             }
@@ -47,10 +60,15 @@ module.exports = function (grunt) {
         }
     });
 
-    // Run server
+    // Lint code
     grunt.registerTask('default', [
         'eslint',
         'jsonlint'
+    ]);
+
+    // Build ES5 sources
+    grunt.registerTask('build', [
+        'babel'
     ]);
 
     // Generate quality reports

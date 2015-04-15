@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.1.5
+
+Build process. Allows to develop this framework in ES6 and converts it into an ES5 compatible package.
+
 ## Version 1.1.4
 
 Transpiled ES6 files to ES5.
