@@ -12,13 +12,11 @@ npm i -S js-workflow
 
 Add it to your code :
 
-`
-var Workflow = require('js-workflow').Workflow;
-var Node = require('js-workflow').Node;
-var ConditionnalNode = require('js-workflow').ConditionnalNode;
-
-// your code
-`
+```
+var Workflow = require('js-workflow').Workflow,
+    Node = require('js-workflow').Node,
+    ConditionnalNode = require('js-workflow').ConditionnalNode;
+```
 
 You can have a look to some examples there : https://github.com/Companeo/js-workflow-examples
 
