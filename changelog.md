@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.1.3
+
+Failed npm push, sorry for this useless version.
+
 ## Version 1.1.2
 
 Put dev dependencies in devDependencies
