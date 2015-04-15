@@ -4,23 +4,23 @@ Modelize a workflow for JavaScript. Server/browser agnostic, ES6 based.
 
 ## Usage
 
-After install dependencies with :
+To allowed you to use js-workflow, you will need to load it :
 
 `
-npm i
+npm i -S js-workflow
 `
 
-you can try the workflow by running :
+Add it to your code :
 
 `
-./node_modules/babel/bin/babel-node index.js
+var Workflow = require('js-workflow').Workflow;
+var Node = require('js-workflow').Node;
+var ConditionnalNode = require('js-workflow').ConditionnalNode;
+
+// your code
 `
 
-### Why call with babel-node ?
-
-Because js-workflow uses ES6 (aka ES2015, aka Harmony) features which are not supported, for the moment by nodejs, even using the harmony flag.
-
-On browser, you may probably have to transpile using babel to ES5.
+You can have a look to some examples there : https://github.com/Companeo/js-workflow-examples
 
 ## License
 
