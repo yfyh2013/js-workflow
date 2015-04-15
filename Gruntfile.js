@@ -16,6 +16,7 @@ module.exports = function (grunt) {
             lib: {
                 files: {
                     'lib/conditionnalNode.js': 'src/conditionnalNode.js',
+                    'lib/consoleDriver.js': 'src/consoleDriver.js',
                     'lib/driver.js': 'src/driver.js',
                     'lib/mergeNode.js': 'src/mergeNode.js',
                     'lib/node.js': 'src/node.js',
