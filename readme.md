@@ -1,6 +1,6 @@
 # js-workflow
 
-Modelize a workflow for JavaScript. Server/browser agnostic, ES6 based.
+Modelize a workflow for JavaScript. Server/browser agnostic.
 
 ## Usage
 

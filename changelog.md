@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.1.4
+
+Transpiled ES6 files to ES5.
+
 ## Version 1.1.3
 
 Failed npm push, sorry for this useless version.
