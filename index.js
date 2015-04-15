@@ -12,21 +12,21 @@ class Workflow {
      * js-workflow allows you to add many node directly at the start and not after a first useless node.
      * Corresponding to a split into parallel execution
      */
-    addOutNode(node) {
+        addOutNode(node) {
         this.outNodes.push(node);
     }
 
     /**
      * Classical toString method
      */
-    toString() {
+        toString() {
         return 'data :' + JSON.stringify(this.data);
     }
 
     /**
      * Will run. Surprise ;)
      */
-    run() {
+        run() {
         for (let n in this.outNodes) {
             this.outNodes[n].run(this.data);
         }
@@ -40,34 +40,53 @@ class Node {
     constructor() {
         this.outNodes = [];
         this.finished = false;
+        this.failed = false;
     }
 
     /**
      * You can add a node here to follow this one. If you want, you can add more than one.
      * Corresponding to a split into parallel execution.
      */
-    addOutNode(node) {
+        addOutNode(node) {
         this.outNodes.push(node);
     }
 
     /**
-     * Is this node is finished ? Sometimes is useful. Mainly times to allows future nodes to execute.
+     * Is this node is finished ? Sometimes is useful. Mainly times to allows future nodes to be executed.
      */
-    isFinished() {
+        isFinished() {
         return this.finished;
+    }
+
+    /**
+     * Is this node has failed ? Sometimes is useful. Mainly times to disallow future nodes to be executed.
+     */
+        hasFailed() {
+        return this.failed;
     }
 
     /**
      * Set as finished
      */
-    setFinished() {
-        this.finished = true;
+        setFinished() {
+        if (false === this.hasFailed()) {
+            this.finished = true;
+        }
+    }
+
+    /**
+     * Set as failed
+     */
+        fail() {
+        if (false === this.isFinished()) {
+            this.failed = true;
+        }
     }
 
     /**
      * Can I run ? For me, it's always true. That's why you should not use me but an inherited class that controls my state correctly.
      */
-    canRun() {
+        canRun() {
         return true;
     }
 
@@ -75,7 +94,7 @@ class Node {
      * Will run. Surprise ;)
      * Again.
      */
-    run(data) {
+        run(data) {
         this.data = data;
         for (let n in this.outNodes) {
             if (!this.outNodes[n].isFinished() && this.outNodes[n].canRun(data)) {
@@ -85,49 +104,35 @@ class Node {
     }
 }
 /**
- * ConsoleNode is useful for debug. It only displays in console the data.
- */
-class ConsoleNode extends Node {
-    constructor(message) {
-        super();
-        this.message = message;
-    }
-
-    /**
-     * Will run. Surprise ;)
-     * Again. Again.
-     */
-    run(data) {
-        this.data = data;
-        if (undefined !== this.message) {
-            console.log(this.message);
-        }
-        console.log('data :', JSON.stringify(this.data));
-        super.setFinished();
-        super.run(this.data);
-    }
-}
-/**
  * ConditionnalNode can run only if the condition passed in params is true.
- * Takes an expression or a function, condition needs to be evaluated to boolean true or false only (strict equality, "true" will correspond to false).
  * It is like an XOR split
+ * Takes an expression or a function, condition needs to be evaluated to boolean true or false only (strict equality, "true" will correspond to false).
+ * failCallback parameter function is optional. It receives, in this order : err, the problem which happened, data, data passed to the node.
+ * failCallback will only be called if the condition returns false.
  */
 class ConditionnalNode extends Node {
-    constructor(condition) {
+    constructor(condition, failCallback) {
         super();
         this.condition = condition;
+        this.failCallback = failCallback;
     }
 
     /**
      * is the condition allowed me to run ?
      */
-    canRun(data) {
+        canRun(data) {
         var retour;
 
         if ('function' === typeof this.condition) {
             retour = this.condition(data);
         } else {
             retour = this.condition;
+        }
+        if (false === retour) {
+            this.fail();
+            if ('function' === typeof this.failCallback) {
+                this.failCallback(null, data);
+            }
         }
 
         return retour;
@@ -136,14 +141,14 @@ class ConditionnalNode extends Node {
     /**
      * Read the super.run comment
      */
-    run(data) {
+        run(data) {
         this.data = data;
         super.setFinished();
         super.run(this.data);
     }
 }
 /**
- * SynchronizingNode is the reprenstation of logical operator AND
+ * SynchronizingNode is the representation of logical operator AND
  */
 class SynchronizingNode extends Node {
     constructor() {
@@ -171,7 +176,7 @@ class SynchronizingNode extends Node {
     }
 }
 /**
- * SynchronizingNode is the reprenstation of logical operator OR
+ * MergeNode is the representation of logical operator OR
  */
 class MergeNode extends Node {
     constructor() {
@@ -198,7 +203,73 @@ class MergeNode extends Node {
         return retour;
     }
 }
+/**
+ * XorMergeNode is the representation of logical operator XOR
+ * failCallback parameter function is optional. It receives, in this order : err, the problem which happened, data, data passed to the node
+ */
+class XorMergeNode extends Node {
+    constructor(failCallback) {
+        super();
+        this.inNodes = [];
+        this.failCallback = failCallback;
+    }
 
+    addInNodes(node) {
+        this.inNodes.push(node);
+    }
+
+    canRun(data) {
+        var retour = false,
+            iterateurInNodes = 0,
+            inNodesLength = this.inNodes.length;
+
+        // If all input nodes are not terminated (success or fail), the canRun will deliver false.
+        // If only one has terminated with success and the rest are in fail status, canRun will return true.
+        // If more than one input node has terminated with success, canRun will return false and call its failCallback.
+        try {
+            while (iterateurInNodes < inNodesLength) {
+                if (this.inNodes[iterateurInNodes].isFinished()) {
+                    if (true === retour) {
+                        throw 'XOR_EXCEPTION : more than one are finished';
+                    }
+                    retour = true;
+                }
+                iterateurInNodes += 1;
+            }
+        } catch (eX) {
+            if ('function' === typeof this.failCallback) {
+                this.failCallback(eX, data);
+            }
+            retour = false;
+        }
+
+        return retour;
+    }
+}
+
+/**
+ * ConsoleNode is useful for debug. It only displays in console the data.
+ */
+class ConsoleNode extends Node {
+    constructor(message) {
+        super();
+        this.message = message;
+    }
+
+    /**
+     * Will run. Surprise ;)
+     * Again. Again.
+     */
+        run(data) {
+        this.data = data;
+        if (undefined !== this.message) {
+            console.log(this.message);
+        }
+        console.log('data :', JSON.stringify(this.data));
+        super.setFinished();
+        super.run(this.data);
+    }
+}
 /**
  * Add1Node is a sample. It just
  */
@@ -223,11 +294,9 @@ var wf = new Workflow(2),
     node1A = new Add1Node(),
     node1B = new Add1Node(),
     cond1 = new ConditionnalNode(function (data) {
-        console.log('cond1', data, (2 !== data));
         return (2 !== data);
     }),
     cond2 = new ConditionnalNode(function (data) {
-        console.log('cond2', data, (3 !== data));
         return (3 !== data);
     });
 
