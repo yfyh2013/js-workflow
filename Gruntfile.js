@@ -15,12 +15,13 @@ module.exports = function (grunt) {
         babel: {
             lib: {
                 files: {
-                    "lib/conditionnalNode.js": "src/conditionnalNode.js",
-                    "lib/mergeNode.js": "src/mergeNode.js",
-                    "lib/node.js": "src/node.js",
-                    "lib/synchronizingNode.js": "src/synchronizingNode.js",
-                    "lib/workflow.js": "src/workflow.js",
-                    "lib/xorMergeNode.js": "src/xorMergeNode.js"
+                    'lib/conditionnalNode.js': 'src/conditionnalNode.js',
+                    'lib/driver.js': 'src/driver.js',
+                    'lib/mergeNode.js': 'src/mergeNode.js',
+                    'lib/node.js': 'src/node.js',
+                    'lib/synchronizingNode.js': 'src/synchronizingNode.js',
+                    'lib/workflow.js': 'src/workflow.js',
+                    'lib/xorMergeNode.js': 'src/xorMergeNode.js'
                 }
             }
         },
