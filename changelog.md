@@ -1,6 +1,12 @@
 # Changelog
 
-## Version 1.1
+## Version 1.2
+
+Introducing :
+- Unit tests with Jasmine
+- Driver storage features (with ConsoleDriver, MongoDriver, FileDriver)
+
+## Version 1.1.1
 
 Introducing correct usage via npm and require method.
 
