@@ -8,20 +8,6 @@ class Node {
         this.outNodes = [];
         this.finished = false;
         this.failed = false;
-        this.drivers = [];
-    }
-
-    /**
-     * Add driver for storage.
-     * Driver param should be an object inherited from Driver.
-     * If not will throw an exception
-     */
-        addDriver(driver) {
-        if (driver instanceof Driver) {
-            this.drivers.push(driver);
-        } else {
-            throw driver.toString() + 'is not a driver instance.'
-        }
     }
 
     /**

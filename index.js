@@ -8,3 +8,4 @@ exports.MergeNode = require('./lib/mergeNode').MergeNode;
 exports.XorMergeNode = require('./lib/xorMergeNode').XorMergeNode;
 exports.Driver = require('./lib/driver').Driver;
 exports.ConsoleDriver = require('./lib/consoleDriver').ConsoleDriver;
+exports.StorageNode = require('./lib/storageNode').StorageNode;
