@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.2
+
+Introducing :
+- Unit tests with Jasmine
+- Driver storage features (with ConsoleDriver and the StorageNode)
+
 ## Version 1.1.6
 
 Fix the undefined xorMerge error
