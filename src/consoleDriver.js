@@ -1,8 +1,12 @@
 /*globals exports, require */
 
-var Driver = require('./driver').Driver;
+var Driver = require('./driver.js').Driver;
 
 class ConsoleDriver extends Driver {
+    constructor() {
+        super();
+    }
+
     store(data) {
         if ('object' === typeof data) {
             console.log(JSON.stringify(data));
@@ -11,3 +15,5 @@ class ConsoleDriver extends Driver {
         }
     }
 }
+
+exports.ConsoleDriver = ConsoleDriver;

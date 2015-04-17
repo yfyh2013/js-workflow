@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.2.1
+
+Introducing  more unit tests with Jasmine
+
+Fix a critical bug in defining Driver main class, which disallow its usage.
+
 ## Version 1.2
 
 Introducing :

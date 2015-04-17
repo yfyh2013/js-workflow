@@ -20,6 +20,7 @@ module.exports = function (grunt) {
                     'lib/driver.js': 'src/driver.js',
                     'lib/mergeNode.js': 'src/mergeNode.js',
                     'lib/node.js': 'src/node.js',
+                    'lib/storageNode.js': 'src/storageNode.js',
                     'lib/synchronizingNode.js': 'src/synchronizingNode.js',
                     'lib/workflow.js': 'src/workflow.js',
                     'lib/xorMergeNode.js': 'src/xorMergeNode.js'
