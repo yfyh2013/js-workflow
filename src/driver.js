@@ -1,6 +1,6 @@
 class Driver {
     store() {
-        throw 'Driver, or at least one of them, doesn\'t have a store method.';
+        throw new Error('Don\'t use the class Driver directly please.');
     }
 }
 
