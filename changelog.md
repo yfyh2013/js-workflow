@@ -1,8 +1,18 @@
 # Changelog
 
+## Version 1.2.2
+
+Introducing more unit tests with Jasmine.
+
+Plus some safety errors throwed :
+- Node.addOutNode will throw an exception when a non-node thing is passed in argument.
+- SynchronizingMergeNode.addInNode will throw an exception when a non-node thing is passed in argument.
+- MergeNode.addInNode will throw an exception when a non-node thing is passed in argument.
+- XorMergeNode.addInNode will throw an exception when a non-node thing is passed in argument.
+
 ## Version 1.2.1
 
-Introducing  more unit tests with Jasmine
+Introducing more unit tests with Jasmine
 
 Fix a critical bug in defining Driver main class, which disallow its usage.
 

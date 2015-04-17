@@ -14,7 +14,11 @@ class XorMergeNode extends Node {
     }
 
     addInNodes(node) {
-        this.inNodes.push(node);
+        if (node instanceof Node) {
+            this.inNodes.push(node);
+        } else {
+            throw new Error('Not a node instance.');
+        }
     }
 
     canRun(data) {
