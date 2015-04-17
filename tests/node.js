@@ -109,7 +109,19 @@ describe('Node', function () {
     describe('#setFinished', function () {
         it('should be defined', function (done) {
             var node = new Node();
+
             expect(node.setFinished).toBeDefined();
+
+            done();
+        });
+
+        it('should set the node to finished', function (done) {
+            var node = new Node();
+
+            expect(node.finished).toBeFalsy();
+            expect(node.setFinished()).not.toBeDefined();
+            expect(node.finished).toBeTruthy();
+
             done();
         });
     });
