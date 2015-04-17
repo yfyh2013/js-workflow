@@ -132,6 +132,16 @@ describe('Node', function () {
             expect(node.fail).toBeDefined();
             done();
         });
+
+        it('should set the node to failed', function (done) {
+            var node = new Node();
+
+            expect(node.failed).toBeFalsy();
+            expect(node.fail()).not.toBeDefined();
+            expect(node.failed).toBeTruthy();
+
+            done();
+        });
     });
 
     describe('#canRun', function () {
