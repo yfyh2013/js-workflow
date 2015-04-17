@@ -2,7 +2,7 @@
 
 ## Version 1.2.2
 
-Introducing more unit tests with Jasmine.
+Introducing more unit tests with Jasmine (Node, Workflow classes).
 
 Plus some safety errors throwed :
 - Node.addOutNode will throw an exception when a non-node thing is passed in argument.
