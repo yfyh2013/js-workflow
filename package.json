@@ -19,6 +19,7 @@
     "grunt-eslint": "^9.0.0",
     "grunt-jsonlint": "^1.0.4",
     "grunt-plato": "^1.2.1",
+    "jasmine-expect": "^2.0.0-beta1",
     "jasmine-node": "^1.14.5",
     "load-grunt-tasks": "^3.1.0",
     "plato": "^1.4.0",
