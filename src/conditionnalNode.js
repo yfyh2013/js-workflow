@@ -17,6 +17,18 @@ class ConditionnalNode extends Node {
     }
 
     /**
+     * Enable post-init configuration
+     */
+    configure(options) {
+        if ('condition' in options) {
+            this.condition = options.condition;
+        }
+        if ('failCallback' in options) {
+            this.failCallback = options.failCallback;
+        }
+    }
+
+    /**
      * is the condition allowed me to run ?
      */
         canRun(data) {
