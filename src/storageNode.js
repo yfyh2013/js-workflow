@@ -1,4 +1,4 @@
-/*globals exports, require */
+/*globals exports, require, Driver */
 
 var Node = require('./node').Node;
 
@@ -17,7 +17,7 @@ class StorageNode extends Node {
         if (driver instanceof Driver) {
             this.drivers.push(driver);
         } else {
-            throw driver.toString() + 'is not a driver instance.'
+            throw driver.toString() + 'is not a driver instance.';
         }
     }
 
@@ -30,7 +30,7 @@ class StorageNode extends Node {
         if (driver instanceof Driver) {
             this.drivers.push(driver);
         } else {
-            throw driver.toString() + 'is not a driver instance.'
+            throw driver.toString() + 'is not a driver instance.';
         }
     }
 

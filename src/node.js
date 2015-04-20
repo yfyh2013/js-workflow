@@ -11,6 +11,12 @@ class Node {
     }
 
     /**
+     * Enable post-init configuration
+     */
+        configure() {
+    }
+
+    /**
      * You can add a node here to follow this one. If you want, you can add more than one.
      * Corresponding to a split into parallel execution.
      */

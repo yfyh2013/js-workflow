@@ -1,4 +1,4 @@
-/*globals require, describe, it */
+/*globals require, describe, it, expect */
 
 var Driver = require('./../lib/driver').Driver;
 
@@ -21,7 +21,7 @@ describe('Driver', function () {
             var driver = new Driver();
 
             expect(function () {
-                driver.store()
+                driver.store();
             }).toThrow(new Error('Don\'t use the class Driver directly please.'));
 
             done();

@@ -1,4 +1,4 @@
-/*globals require, describe, it */
+/*globals require, describe, it, expect */
 
 var Node = require('./../lib/node').Node;
 require('jasmine-expect');
@@ -29,7 +29,7 @@ describe('Node', function () {
                 anotherNode = new Node();
 
             expect(function () {
-                node.addOutNode(anotherNode)
+                node.addOutNode(anotherNode);
             }).not.toThrow();
             expect(node.outNodes).toBeNonEmptyArray();
 
@@ -40,37 +40,37 @@ describe('Node', function () {
             var node = new Node();
 
             expect(function () {
-                node.addOutNode('a')
+                node.addOutNode('a');
             }).toThrow(new Error('Not a node instance.'));
             expect(node.outNodes).toBeEmptyArray();
 
             expect(function () {
-                node.addOutNode('2')
+                node.addOutNode('2');
             }).toThrow(new Error('Not a node instance.'));
             expect(node.outNodes).toBeEmptyArray();
 
             expect(function () {
-                node.addOutNode(2)
+                node.addOutNode(2);
             }).toThrow(new Error('Not a node instance.'));
             expect(node.outNodes).toBeEmptyArray();
 
             expect(function () {
-                node.addOutNode(0)
+                node.addOutNode(0);
             }).toThrow(new Error('Not a node instance.'));
             expect(node.outNodes).toBeEmptyArray();
 
             expect(function () {
-                node.addOutNode(true)
+                node.addOutNode(true);
             }).toThrow(new Error('Not a node instance.'));
             expect(node.outNodes).toBeEmptyArray();
 
             expect(function () {
-                node.addOutNode(false)
+                node.addOutNode(false);
             }).toThrow(new Error('Not a node instance.'));
             expect(node.outNodes).toBeEmptyArray();
 
             expect(function () {
-                node.addOutNode(new Date())
+                node.addOutNode(new Date());
             }).toThrow(new Error('Not a node instance.'));
             expect(node.outNodes).toBeEmptyArray();
 

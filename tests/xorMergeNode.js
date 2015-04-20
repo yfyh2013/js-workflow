@@ -1,4 +1,4 @@
-/*globals require, describe, it */
+/*globals require, describe, it, expect */
 
 var XorMergeNode = require('./../lib/xorMergeNode').XorMergeNode;
 
