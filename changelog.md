@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.2.4
+
+Lint sources.
+Add build of 1.2.3 release. Will work much better with this.
+
 ## Version 1.2.3
 
 Introducing configure method to ConditionnalNode, enabling post-init configuration.
