@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.2.3
+
+Introducing configure method to ConditionnalNode, enabling post-init configuration.
+
 ## Version 1.2.2
 
 Introducing more unit tests with Jasmine (Node, Workflow, Driver classes).
