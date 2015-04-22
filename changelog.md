@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.2.5
+
+Fix MergeNode which blocked the wrokflow process.
+
 ## Version 1.2.4
 
 Lint sources.

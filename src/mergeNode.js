@@ -33,6 +33,12 @@ class MergeNode extends Node {
 
         return retour;
     }
+
+    run(data) {
+        this.data = data;
+        super.setFinished();
+        super.run(this.data);
+    }
 }
 
 exports.MergeNode = MergeNode;
