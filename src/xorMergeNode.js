@@ -48,6 +48,12 @@ class XorMergeNode extends Node {
 
         return retour;
     }
+
+    run(data) {
+        this.data = data;
+        super.setFinished();
+        super.run(this.data);
+    }
 }
 
 exports.XorMergeNode = XorMergeNode;
