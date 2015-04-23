@@ -16,17 +16,5 @@ describe('MergeNode', function () {
             expect(mergeNode.run).toBeDefined();
             done();
         });
-        it('should run', function (done) {
-            var mergeNode = new MergeNode(),
-                node = new Node(),
-                wf = new Workflow({});
-
-            wf.addOutNode(node);
-            node.addOutNode(mergeNode);
-
-            wf.run();
-
-            done();
-        });
     });
 });
