@@ -187,6 +187,20 @@ describe('Node', function () {
             expect(node.canRun).toBeFunction();
             done();
         });
+
+        it('should say that you can run, don\'t care of state', function (done) {
+            var node = new Node();
+            expect(node.canRun()).toBeBoolean();
+            expect(node.canRun()).toBeTruthy();
+            node.fail();
+            expect(node.canRun()).toBeBoolean();
+            expect(node.canRun()).toBeTruthy();
+            node = new Node();
+            node.setFinished();
+            expect(node.canRun()).toBeBoolean();
+            expect(node.canRun()).toBeTruthy();
+            done();
+        });
     });
 
     describe('#run', function () {
