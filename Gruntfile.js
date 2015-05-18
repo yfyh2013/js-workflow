@@ -59,6 +59,28 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+
+        jasmine_node: {
+            task_name: {
+                options: {
+                    coverage: {},
+                    forceExit: true,
+                    match: '.',
+                    matchAll: false,
+                    specFolders: ['tests'],
+                    extensions: 'js',
+                    specNameMatcher: '',
+                    captureExceptions: true,
+                    junitreport: {
+                        report: false,
+                        savePath: './coverage/',
+                        useDotNotation: true,
+                        consolidate: true
+                    }
+                },
+                src: ['lib/**/*.js']
+            }
         }
     });
 
@@ -69,6 +91,10 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'babel'
+    ]);
+
+    grunt.registerTask('test', [
+        'jasmine_node'
     ]);
 
     grunt.registerTask('quality', [

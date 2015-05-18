@@ -210,5 +210,10 @@ describe('Node', function () {
             expect(node.run).toBeFunction();
             done();
         });
+        it('should run', function (done) {
+            var node = new Node();
+            node.run();
+            done();
+        });
     });
 });

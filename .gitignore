@@ -7,8 +7,10 @@
 .DS_Store/
 #Cloud9
 .c9/
-Atlassian thing
+# Atlassian thing
 atlassian-ide-plugin.xml
+#grunt thing
+.grunt
 
 # npm things
 node_modules/
