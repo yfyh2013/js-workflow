@@ -39,7 +39,6 @@ module.exports = function (grunt) {
             ]
         },
 
-        // Lint the JSON files
         jsonlint: {
             all: {
                 src: [
@@ -63,18 +62,15 @@ module.exports = function (grunt) {
         }
     });
 
-    // Lint code
     grunt.registerTask('default', [
         'eslint',
         'jsonlint'
     ]);
 
-    // Build ES5 sources
     grunt.registerTask('build', [
         'babel'
     ]);
 
-    // Generate quality reports
     grunt.registerTask('quality', [
         'plato'
     ]);

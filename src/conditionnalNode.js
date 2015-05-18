@@ -12,14 +12,14 @@ var Node = require('./node').Node;
 class ConditionnalNode extends Node {
     constructor(condition, failCallback) {
         super();
-        this.condition = condition;
-        this.failCallback = failCallback;
+        this.condition = condition || function () {};
+        this.failCallback = failCallback || function () {};
     }
 
     /**
      * Enable post-init configuration
      */
-    configure(options) {
+        configure(options) {
         if ('condition' in options) {
             this.condition = options.condition;
         }
