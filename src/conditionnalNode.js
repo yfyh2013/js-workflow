@@ -12,8 +12,9 @@ var Node = require('./node').Node;
 class ConditionnalNode extends Node {
     constructor(condition, failCallback) {
         super();
-        this.condition = condition || function () {};
-        this.failCallback = failCallback || function () {};
+
+        this.condition = (undefined !== condition) ? condition : function () {};
+        this.failCallback = (undefined !== failCallback) ? failCallback : function () {};
     }
 
     /**

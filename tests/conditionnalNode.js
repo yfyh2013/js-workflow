@@ -61,6 +61,34 @@ describe('ConditionnalNode', function () {
                 expect(condNode.condition).toBeFunction();
                 done();
             });
+
+            it('should take the correct value', function (done) {
+                var condNode = new ConditionnalNode(true);
+                expect(condNode.condition).toBeDefined();
+                expect(condNode.condition).toBeBoolean();
+                expect(condNode.condition).toBeTruthy();
+                condNode = new ConditionnalNode(false);
+                expect(condNode.condition).toBeDefined();
+                expect(condNode.condition).toBeBoolean();
+                expect(condNode.condition).toBeFalsy();
+                condNode = new ConditionnalNode(0);
+                expect(condNode.condition).toBeDefined();
+                expect(condNode.condition).toBeNumber();
+                expect(condNode.condition).toBe(0);
+                condNode = new ConditionnalNode(1);
+                expect(condNode.condition).toBeDefined();
+                expect(condNode.condition).toBeNumber();
+                expect(condNode.condition).toBe(1);
+                condNode = new ConditionnalNode(4);
+                expect(condNode.condition).toBeDefined();
+                expect(condNode.condition).toBeNumber();
+                expect(condNode.condition).toBe(4);
+                condNode = new ConditionnalNode('abc');
+                expect(condNode.condition).toBeDefined();
+                expect(condNode.condition).toBeString();
+                expect(condNode.condition).toBe('abc');
+                done();
+            });
         });
 
         describe('#failCallback', function () {
@@ -68,6 +96,15 @@ describe('ConditionnalNode', function () {
                 var condNode = new ConditionnalNode();
                 expect(condNode.failCallback).toBeDefined();
                 expect(condNode.failCallback).toBeFunction();
+                done();
+            });
+        });
+
+        describe('#canRun', function () {
+            it('should authorize run from an expression', function (done) {
+                var condNode = new ConditionnalNode(true);
+                //expect(condNode.condition).toBeDefined();
+                //expect(condNode.condition).toBeFunction();
                 done();
             });
         });
