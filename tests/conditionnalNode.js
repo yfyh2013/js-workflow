@@ -1,13 +1,12 @@
 /*globals require, describe, it, expect */
 
-var ConditionnalNode = require('./../lib/conditionnalNode').ConditionnalNode;
+var ConditionnalNode = require('./../lib/conditionnalNode').ConditionnalNode,
+    Node = require('./../lib/node').Node;
 
 describe('ConditionnalNode', function () {
     it('should be defined', function (done) {
         expect(ConditionnalNode).toBeDefined();
-        //console.log(Object.getOwnPropertyNames(Node.prototype).filter(function (p) {
-        //    return 'function' === typeof Node.prototype[p];
-        //}));
+        expect(ConditionnalNode).toBeFunction();
         done();
     });
 
@@ -16,6 +15,13 @@ describe('ConditionnalNode', function () {
             var condNode = new ConditionnalNode();
             expect(condNode).toBeDefined();
             expect(Object.keys(condNode).length).toBe(5);
+            done();
+        });
+
+        it('should have the correct inheritance', function (done) {
+            var condNode = new ConditionnalNode();
+            expect(condNode instanceof Node).toBeTruthy();
+            expect(condNode instanceof ConditionnalNode).toBeTruthy();
             done();
         });
 

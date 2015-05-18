@@ -101,6 +101,7 @@ describe('Node', function () {
 
         it('should return false at creation', function (done) {
             var node = new Node();
+            expect(node.hasFailed()).toBeBoolean();
             expect(node.hasFailed()).toBeFalsy();
             done();
         });
@@ -118,8 +119,10 @@ describe('Node', function () {
         it('should set the node to finished', function (done) {
             var node = new Node();
 
+            expect(node.finished).toBeBoolean();
             expect(node.finished).toBeFalsy();
             expect(node.setFinished()).not.toBeDefined();
+            expect(node.finished).toBeBoolean();
             expect(node.finished).toBeTruthy();
 
             done();
@@ -136,8 +139,10 @@ describe('Node', function () {
         it('should set the node to failed', function (done) {
             var node = new Node();
 
+            expect(node.failed).toBeBoolean();
             expect(node.failed).toBeFalsy();
             expect(node.fail()).not.toBeDefined();
+            expect(node.failed).toBeBoolean();
             expect(node.failed).toBeTruthy();
 
             done();
