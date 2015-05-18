@@ -13,7 +13,9 @@ describe('Node', function () {
         var node = new Node();
         expect(node.outNodes).toBeEmptyArray();
         expect(node.finished).toBeFalsy();
+        expect(node.finished).toBeBoolean();
         expect(node.failed).toBeFalsy();
+        expect(node.failed).toBeBoolean();
         done();
     });
 
@@ -82,12 +84,14 @@ describe('Node', function () {
         it('should be defined', function (done) {
             var node = new Node();
             expect(node.isFinished).toBeDefined();
+            expect(node.isFinished).toBeFunction();
             done();
         });
 
         it('should return false at creation', function (done) {
             var node = new Node();
             expect(node.isFinished()).toBeFalsy();
+            expect(node.isFinished()).toBeBoolean();
             done();
         });
     });
@@ -96,6 +100,7 @@ describe('Node', function () {
         it('should be defined', function (done) {
             var node = new Node();
             expect(node.hasFailed).toBeDefined();
+            expect(node.hasFailed).toBeFunction();
             done();
         });
 
@@ -127,6 +132,19 @@ describe('Node', function () {
 
             done();
         });
+
+        it('should not set the node to finished if already failed', function (done) {
+            var node = new Node();
+            node.fail();
+
+            expect(node.finished).toBeBoolean();
+            expect(node.finished).toBeFalsy();
+            expect(node.setFinished()).not.toBeDefined();
+            expect(node.finished).toBeBoolean();
+            expect(node.finished).toBeFalsy();
+
+            done();
+        });
     });
 
     describe('#fail', function () {
@@ -147,12 +165,26 @@ describe('Node', function () {
 
             done();
         });
+
+        it('should not set the node to failed if already finished', function (done) {
+            var node = new Node();
+            node.setFinished();
+
+            expect(node.failed).toBeBoolean();
+            expect(node.failed).toBeFalsy();
+            expect(node.fail()).not.toBeDefined();
+            expect(node.failed).toBeBoolean();
+            expect(node.failed).toBeFalsy();
+
+            done();
+        });
     });
 
     describe('#canRun', function () {
         it('should be defined', function (done) {
             var node = new Node();
             expect(node.canRun).toBeDefined();
+            expect(node.canRun).toBeFunction();
             done();
         });
     });
@@ -161,6 +193,7 @@ describe('Node', function () {
         it('should be defined', function (done) {
             var node = new Node();
             expect(node.run).toBeDefined();
+            expect(node.run).toBeFunction();
             done();
         });
     });
