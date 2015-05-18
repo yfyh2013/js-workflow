@@ -1,4 +1,4 @@
-# js-workflow
+# js-workflow  [![Build Status](https://travis-ci.org/Companeo/js-workflow.png?branch=master)](https://travis-ci.org/Companeo/js-workflow)
 
 Modelize a workflow for JavaScript. Server side only. ES6 based.
 
