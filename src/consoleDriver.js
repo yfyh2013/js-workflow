@@ -11,7 +11,11 @@ class ConsoleDriver extends Driver {
         if ('object' === typeof data) {
             console.log(JSON.stringify(data));
         } else {
-            console.log(data.toString());
+            if (undefined !== data && undefined !== data.toString) {
+                console.log(data.toString());
+            } else {
+                console.log(data);
+            }
         }
     }
 }
