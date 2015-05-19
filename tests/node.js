@@ -19,6 +19,32 @@ describe('Node', function () {
         done();
     });
 
+    it('should throw when bad call', function (done) {
+        try {
+            var node = Node();
+            expect(2).toBe(3);
+        } catch (eX) {
+            expect(typeof eX).toBe('object');
+            expect(eX instanceof TypeError).toBeTruthy();
+        }
+        done();
+    });
+
+    describe('#configure', function () {
+        it('should be defined', function (done) {
+            var node = new Node();
+            expect(node.configure).toBeDefined();
+            expect(node.configure).toBeFunction();
+            done();
+        });
+
+        it('should return nothing', function (done) {
+            var node = new Node();
+            expect(node.configure()).not.toBeDefined();
+            done();
+        });
+    });
+
     describe('#addOutNode', function () {
         it('should be defined', function (done) {
             var node = new Node();
@@ -210,9 +236,87 @@ describe('Node', function () {
             expect(node.run).toBeFunction();
             done();
         });
-        it('should run', function (done) {
-            var node = new Node();
-            node.run();
+
+        it('should run with child node running too', function (done) {
+            var nodeA = new Node(),
+                nodeB = new Node(),
+                testCounter = 0;
+
+            nodeB.canRun = function (arg) {
+                expect(arg).toBe(8);
+                expect(arg).toBeNumber();
+                testCounter += 1;
+                return true;
+            };
+            nodeB.run = function (arg) {
+                expect(arg).toBe(8);
+                expect(arg).toBeNumber();
+                testCounter += 1;
+                return true;
+            };
+
+            nodeB.setFinished();
+
+            nodeA.addOutNode(nodeB);
+
+            nodeA.setFinished();
+            nodeA.run(8);
+
+            expect(testCounter).toBe(2);
+            done();
+        });
+
+        it('should run with child node which can\'t run beacause not finished', function (done) {
+            var nodeA = new Node(),
+                nodeB = new Node(),
+                testCounter = 0;
+
+            nodeB.canRun = function (arg) {
+                expect(arg).toBe(8);
+                expect(arg).toBeNumber();
+                testCounter += 1;
+                return true;
+            };
+            nodeB.run = function (arg) {
+                expect(arg).toBe(8);
+                expect(arg).toBeNumber();
+                testCounter += 1;
+                return true;
+            };
+
+            nodeA.addOutNode(nodeB);
+
+            nodeA.setFinished();
+            nodeA.run(8);
+
+            expect(testCounter).toBe(0);
+            done();
+        });
+
+        it('should run with child node which can\'t run', function (done) {
+            var nodeA = new Node(),
+                nodeB = new Node(),
+                testCounter = 0;
+
+            nodeB.canRun = function (arg) {
+                expect(arg).toBe(8);
+                expect(arg).toBeNumber();
+                testCounter += 1;
+                return true;
+            };
+            nodeB.run = function (arg) {
+                expect(arg).toBe(8);
+                expect(arg).toBeNumber();
+                testCounter += 1;
+                return true;
+            };
+
+            nodeA.addOutNode(nodeB);
+
+            nodeA.setFinished();
+            nodeA.run(8);
+
+            expect(testCounter).toBe(0);
             done();
         });
     });
