@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.3.0
+
+Adding a lot of unit tests (Node, StorageNode, XorMergeNode).
+Fix a major crazy bug about Node revealed by unit tests.
+
 ## Version 1.2.6
 
 Adding a lot of unit tests plus generate code coverage tool.
