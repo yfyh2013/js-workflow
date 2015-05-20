@@ -13,19 +13,23 @@ class ConditionnalNode extends Node {
     constructor(condition, failCallback) {
         super();
 
-        this.condition = (undefined !== condition) ? condition : function () {};
-        this.failCallback = (undefined !== failCallback) ? failCallback : function () {};
+        this.condition = (undefined !== condition) ? condition : function () {
+        };
+        this.failCallback = ('function' === typeof failCallback) ? failCallback : function () {
+        };
     }
 
     /**
      * Enable post-init configuration
      */
         configure(options) {
-        if ('condition' in options) {
-            this.condition = options.condition;
-        }
-        if ('failCallback' in options) {
-            this.failCallback = options.failCallback;
+        if ('object' === typeof options && null !== options) {
+            if ('condition' in options) {
+                this.condition = options.condition;
+            }
+            if ('failCallback' in options && 'function' === typeof options.failCallback) {
+                this.failCallback = options.failCallback;
+            }
         }
     }
 
