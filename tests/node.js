@@ -286,37 +286,9 @@ describe('Node', function () {
 
             nodeA.addOutNode(nodeB);
 
-            nodeA.setFinished();
             nodeA.run(8);
 
-            expect(testCounter).toBe(0);
-            done();
-        });
-
-        it('should run with child node which can\'t run', function (done) {
-            var nodeA = new Node(),
-                nodeB = new Node(),
-                testCounter = 0;
-
-            nodeB.canRun = function (arg) {
-                expect(arg).toBe(8);
-                expect(arg).toBeNumber();
-                testCounter += 1;
-                return true;
-            };
-            nodeB.run = function (arg) {
-                expect(arg).toBe(8);
-                expect(arg).toBeNumber();
-                testCounter += 1;
-                return true;
-            };
-
-            nodeA.addOutNode(nodeB);
-
-            nodeA.setFinished();
-            nodeA.run(8);
-
-            expect(testCounter).toBe(0);
+            expect(testCounter).toBe(2);
             done();
         });
     });

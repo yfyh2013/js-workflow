@@ -10,7 +10,8 @@ class XorMergeNode extends Node {
     constructor(failCallback) {
         super();
         this.inNodes = [];
-        this.failCallback = failCallback;
+        this.failCallback = ('function' === typeof failCallback) ? failCallback : function () {
+        };
     }
 
     addInNodes(node) {

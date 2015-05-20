@@ -75,7 +75,7 @@ class Node {
         run(data) {
         this.data = data;
         for (let currentNode in this.outNodes) {
-            if (this.outNodes[currentNode].isFinished() && this.outNodes[currentNode].canRun(this.data)) {
+            if (this.outNodes[currentNode].canRun(this.data)) {
                 this.outNodes[currentNode].run(this.data);
             }
         }
