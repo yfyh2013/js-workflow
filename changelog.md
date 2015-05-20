@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.2.6
+
+Adding a lot of unit tests plus generate code coverage tool.
+Fix Node, ConditionnalNode, Driver and ConsoleDriver from bugs discovered via unit tests (this is an ad for TDD).
+
 ## Version 1.2.5
 
 Fix MergeNode which blocked the wrokflow process.
