@@ -186,6 +186,72 @@ describe('XorMergeNode', function () {
                 expect(condNode.canRun()).toBeFalsy();
                 done();
             });
+
+            it('will return false for a inNode which throw during canRun', function (done) {
+                var condNode = new XorMergeNode(),
+                    aFailNode = new Node();
+
+                aFailNode.isFinished = function () {
+                    return false;
+                };
+                condNode.addInNodes(aFailNode);
+                expect(condNode.canRun()).toBeDefined();
+                expect(condNode.canRun()).toBeBoolean();
+                expect(condNode.canRun()).toBeFalsy();
+                done();
+            });
+
+            it('will return false for a inNode which throw during canRun', function (done) {
+                var condNode = new XorMergeNode(),
+                    aFailNode = new Node(),
+                    bFailNode = new Node();
+
+                aFailNode.isFinished = function () {
+                    return true;
+                };
+                bFailNode.isFinished = function () {
+                    return true;
+                };
+                condNode.addInNodes(aFailNode);
+                condNode.addInNodes(bFailNode);
+                expect(condNode.canRun()).toBeDefined();
+                expect(condNode.canRun()).toBeBoolean();
+                expect(condNode.canRun()).toBeFalsy();
+                done();
+            });
+
+            it('will return false for a inNode which throw during canRun', function (done) {
+                var condNode = new XorMergeNode(),
+                    aFailNode = new Node(),
+                    bFailNode = new Node();
+
+                aFailNode.isFinished = function () {
+                    return false;
+                };
+                bFailNode.isFinished = function () {
+                    return true;
+                };
+                condNode.addInNodes(aFailNode);
+                condNode.addInNodes(bFailNode);
+                expect(condNode.canRun()).toBeDefined();
+                expect(condNode.canRun()).toBeBoolean();
+                expect(condNode.canRun()).toBeTruthy();
+                done();
+            });
         })
+
+        describe('#run', function () {
+            it('should be defined', function (done) {
+                var condNode = new XorMergeNode();
+                expect(condNode.run).toBeFunction();
+                done();
+            });
+
+            it('should not run', function (done) {
+                var condNode = new XorMergeNode();
+                expect(condNode.run()).not.toBeDefined();
+                done();
+            });
+        });
     });
 });

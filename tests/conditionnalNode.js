@@ -128,7 +128,8 @@ describe('ConditionnalNode', function () {
             });
 
             it('should take the correct value when defining failCallback with good value', function (done) {
-                var condNode = new ConditionnalNode(true, function () {});
+                var condNode = new ConditionnalNode(true, function () {
+                });
                 expect(condNode.failCallback).toBeDefined();
                 expect(condNode.failCallback).toBeFunction();
                 done();
@@ -269,59 +270,138 @@ describe('ConditionnalNode', function () {
             it('should do the good things with good condition', function (done) {
                 var condNode = new ConditionnalNode();
                 expect(condNode.configure({
-                    condition : true
+                    condition: true
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeBoolean();
                 expect(condNode.condition).toBeTruthy();
                 expect(condNode.configure({
-                    condition : false
+                    condition: false
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeBoolean();
                 expect(condNode.condition).toBeFalsy();
                 expect(condNode.configure({
-                    condition : 0
+                    condition: 0
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(0);
                 expect(condNode.configure({
-                    condition : 1
+                    condition: 1
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(1);
                 expect(condNode.configure({
-                    condition : 4
+                    condition: 4
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(4);
                 expect(condNode.configure({
-                    condition : Infinity
+                    condition: Infinity
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(Infinity);
                 expect(condNode.configure({
-                    condition : -0
+                    condition: -0
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(-0);
                 expect(condNode.configure({
-                    condition : -1
+                    condition: -1
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(-1);
                 expect(condNode.configure({
-                    condition : -4
+                    condition: -4
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(-4);
                 expect(condNode.configure({
-                    condition : -Infinity
+                    condition: -Infinity
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNumber();
                 expect(condNode.condition).toBe(-Infinity);
                 expect(condNode.configure({
-                    condition : NaN
+                    condition: NaN
                 })).not.toBeDefined();
                 expect(condNode.condition).toBeNaN();
+                done();
+            });
+
+            it('should do the good things with dirty failCallback', function (done) {
+                var condNode = new ConditionnalNode();
+                expect(condNode.configure({
+                    failCallback: true
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: false
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: 0
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: 1
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: 4
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: Infinity
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: -0
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: -1
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: -4
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: -Infinity
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: NaN
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                done();
+            });
+
+            it('should do the good things with good failCallback', function (done) {
+                var condNode = new ConditionnalNode();
+                expect(condNode.configure({
+                    failCallback: function () {}
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.configure({
+                    failCallback: function () {
+                        return 'TOTO';
+                    }
+                })).not.toBeDefined();
+                expect(condNode.failCallback).toBeDefined();
+                expect(condNode.failCallback).toBeFunction();
+                expect(condNode.failCallback()).toBeString();
+                expect(condNode.failCallback()).toBe('TOTO');
                 done();
             });
         });
@@ -336,10 +416,29 @@ describe('ConditionnalNode', function () {
         });
 
         describe('#canRun', function () {
-            it('should authorize run from an expression', function (done) {
-                var condNode = new ConditionnalNode(true);
-                //expect(condNode.condition).toBeDefined();
-                //expect(condNode.condition).toBeFunction();
+            it('should be defined', function (done) {
+                var condNode = new ConditionnalNode();
+                expect(condNode.canRun).toBeFunction();
+                done();
+            });
+
+            it('will return false for an empty inNode', function (done) {
+                var condNode = new ConditionnalNode();
+                expect(condNode.canRun()).not.toBeDefined();
+                done();
+            });
+        });
+
+        describe('#run', function () {
+            it('should be defined', function (done) {
+                var condNode = new ConditionnalNode();
+                expect(condNode.run).toBeFunction();
+                done();
+            });
+
+            it('should not run', function (done) {
+                var condNode = new ConditionnalNode();
+                expect(condNode.run()).not.toBeDefined();
                 done();
             });
         });

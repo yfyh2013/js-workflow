@@ -41,9 +41,7 @@ class XorMergeNode extends Node {
                 iterateurInNodes += 1;
             }
         } catch (eX) {
-            if ('function' === typeof this.failCallback) {
-                this.failCallback(eX, data);
-            }
+            this.failCallback(eX, data);
             retour = false;
         }
 
