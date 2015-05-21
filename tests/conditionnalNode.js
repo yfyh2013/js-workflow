@@ -389,7 +389,8 @@ describe('ConditionnalNode', function () {
             it('should do the good things with good failCallback', function (done) {
                 var condNode = new ConditionnalNode();
                 expect(condNode.configure({
-                    failCallback: function () {}
+                    failCallback: function () {
+                    }
                 })).not.toBeDefined();
                 expect(condNode.failCallback).toBeDefined();
                 expect(condNode.failCallback).toBeFunction();
@@ -422,9 +423,43 @@ describe('ConditionnalNode', function () {
                 done();
             });
 
-            it('will return false for an empty inNode', function (done) {
+            it('will return false for a failing condition', function (done) {
                 var condNode = new ConditionnalNode();
-                expect(condNode.canRun()).not.toBeDefined();
+
+                condNode.configure({
+                    condition: false
+                });
+                expect(condNode.canRun()).toBeDefined();
+                expect(condNode.canRun()).toBeBoolean();
+                expect(condNode.canRun()).toBeFalsy();
+                condNode.configure({
+                    condition: function () {
+                        return false;
+                    }
+                });
+                expect(condNode.canRun()).toBeDefined();
+                expect(condNode.canRun()).toBeBoolean();
+                expect(condNode.canRun()).toBeFalsy();
+                done();
+            });
+
+            it('will return true for a success condition', function (done) {
+                var condNode = new ConditionnalNode();
+
+                condNode.configure({
+                    condition: true
+                });
+                expect(condNode.canRun()).toBeDefined();
+                expect(condNode.canRun()).toBeBoolean();
+                expect(condNode.canRun()).toBeTruthy();
+                condNode.configure({
+                    condition: function () {
+                        return true;
+                    }
+                });
+                expect(condNode.canRun()).toBeDefined();
+                expect(condNode.canRun()).toBeBoolean();
+                expect(condNode.canRun()).toBeTruthy();
                 done();
             });
         });

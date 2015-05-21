@@ -46,9 +46,7 @@ class ConditionnalNode extends Node {
         }
         if (false === retour) {
             this.fail();
-            if ('function' === typeof this.failCallback) {
                 this.failCallback(null, data);
-            }
         }
 
         return retour;
