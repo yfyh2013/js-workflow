@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.3.1
+
+Adding a lot of unit tests (ConditionnalNode, XorMergeNode).
+
 ## Version 1.3.0
 
 Adding a lot of unit tests (Node, StorageNode, XorMergeNode).
