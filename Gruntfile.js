@@ -48,10 +48,10 @@ module.exports = function (grunt) {
             },
             'lib': {
                 'src': [
+                    './src/node.js',
                     './src/workflow.js',
                     './src/driver.js',
                     './src/consoleDriver.js',
-                    './src/node.js',
                     './src/conditionnalNode.js',
                     './src/synchronizingNode.js',
                     './src/mergeNode.js',
@@ -87,16 +87,10 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', [
-        'eslint',
-        'jsonlint'
-    ]);
-
-    grunt.registerTask('build', [
-        'babel'
-    ]);
-
-    grunt.registerTask('test', [
+        'concat',
         'babel',
+        'eslint',
+        'jsonlint',
         'jasmine_node'
     ]);
 };

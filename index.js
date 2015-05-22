@@ -1,7 +1,5 @@
-/*globals exports */
-
 /**
- * Workflow is a main part of js-workflow. You need to use it as starter point.
+ * Node is the other main thing. Define the master pieces of a node behavior. You should not use it directly but inherit of it.
  */
 'use strict';
 
@@ -12,101 +10,6 @@ var _createClass = (function () { function defineProperties(target, props) { for
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-var Workflow = (function () {
-    function Workflow(data) {
-        _classCallCheck(this, Workflow);
-
-        this.data = data;
-        this.outNodes = [];
-    }
-
-    _createClass(Workflow, [{
-        key: 'addOutNode',
-
-        /**
-         * Not like a lot of workflow frameworks in various languages, you can start a lot of things from the starting point.
-         * js-workflow allows you to add many node directly at the start and not after a first useless node.
-         * Corresponding to a split into parallel execution
-         */
-        value: function addOutNode(node) {
-            this.outNodes.push(node);
-        }
-    }, {
-        key: 'toString',
-
-        /**
-         * Classical toString method
-         */
-        value: function toString() {
-            return 'data :' + JSON.stringify(this.data);
-        }
-    }, {
-        key: 'run',
-
-        /**
-         * Will run. Surprise ;)
-         */
-        value: function run() {
-            for (var n in this.outNodes) {
-                this.outNodes[n].run(this.data);
-            }
-        }
-    }]);
-
-    return Workflow;
-})();
-
-exports.Workflow = Workflow;
-
-var Driver = (function () {
-    function Driver() {
-        _classCallCheck(this, Driver);
-    }
-
-    _createClass(Driver, [{
-        key: 'store',
-        value: function store() {
-            throw new Error('Don\'t use the class Driver directly please.');
-        }
-    }]);
-
-    return Driver;
-})();
-
-exports.Driver = Driver;
-
-var ConsoleDriver = (function (_Driver) {
-    function ConsoleDriver() {
-        _classCallCheck(this, ConsoleDriver);
-
-        _get(Object.getPrototypeOf(ConsoleDriver.prototype), 'constructor', this).call(this);
-    }
-
-    _inherits(ConsoleDriver, _Driver);
-
-    _createClass(ConsoleDriver, [{
-        key: 'store',
-        value: function store(data) {
-            if ('object' === typeof data) {
-                console.log(JSON.stringify(data));
-            } else {
-                if (undefined !== data && undefined !== data.toString) {
-                    console.log(data.toString());
-                } else {
-                    console.log(data);
-                }
-            }
-        }
-    }]);
-
-    return ConsoleDriver;
-})(Driver);
-
-exports.ConsoleDriver = ConsoleDriver;
-/**
- * Node is the other main thing. Define the master pieces of a node behavior. You should not use it directly but inherit of it.
- */
 
 var Node = (function () {
     function Node() {
@@ -209,6 +112,107 @@ var Node = (function () {
 })();
 
 exports.Node = Node;
+/*globals exports */
+
+/**
+ * Workflow is a main part of js-workflow. You need to use it as starter point.
+ */
+
+var Workflow = (function () {
+    function Workflow(data) {
+        _classCallCheck(this, Workflow);
+
+        this.data = data;
+        this.outNodes = [];
+    }
+
+    _createClass(Workflow, [{
+        key: 'addOutNode',
+
+        /**
+         * Not like a lot of workflow frameworks in various languages, you can start a lot of things from the starting point.
+         * js-workflow allows you to add many node directly at the start and not after a first useless node.
+         * Corresponding to a split into parallel execution
+         */
+        value: function addOutNode(node) {
+            if (node instanceof Node) {
+                this.outNodes.push(node);
+            } else {
+                throw new Error('Not a node instance.');
+            }
+        }
+    }, {
+        key: 'toString',
+
+        /**
+         * Classical toString method
+         */
+        value: function toString() {
+            return 'data :' + JSON.stringify(this.data);
+        }
+    }, {
+        key: 'run',
+
+        /**
+         * Will run. Surprise ;)
+         */
+        value: function run() {
+            for (var n in this.outNodes) {
+                this.outNodes[n].run(this.data);
+            }
+        }
+    }]);
+
+    return Workflow;
+})();
+
+exports.Workflow = Workflow;
+
+var Driver = (function () {
+    function Driver() {
+        _classCallCheck(this, Driver);
+    }
+
+    _createClass(Driver, [{
+        key: 'store',
+        value: function store() {
+            throw new Error('Don\'t use the class Driver directly please.');
+        }
+    }]);
+
+    return Driver;
+})();
+
+exports.Driver = Driver;
+
+var ConsoleDriver = (function (_Driver) {
+    function ConsoleDriver() {
+        _classCallCheck(this, ConsoleDriver);
+
+        _get(Object.getPrototypeOf(ConsoleDriver.prototype), 'constructor', this).call(this);
+    }
+
+    _inherits(ConsoleDriver, _Driver);
+
+    _createClass(ConsoleDriver, [{
+        key: 'store',
+        value: function store(data) {
+            if ('object' === typeof data) {
+                console.log(JSON.stringify(data));
+            } else {
+                if (undefined !== data && undefined !== data.toString) {
+                    console.log(data.toString());
+                } else {
+                    console.log(data);
+                }
+            }
+        }
+    }]);
+
+    return ConsoleDriver;
+})(Driver);
+
+exports.ConsoleDriver = ConsoleDriver;
 /**
  * ConditionnalNode can run only if the condition passed in params is true.
  * It is like an XOR split

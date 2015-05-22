@@ -15,7 +15,11 @@ class Workflow {
      * Corresponding to a split into parallel execution
      */
         addOutNode(node) {
-        this.outNodes.push(node);
+        if (node instanceof Node) {
+            this.outNodes.push(node);
+        } else {
+            throw new Error('Not a node instance.');
+        }
     }
 
     /**

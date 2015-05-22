@@ -1,67 +1,3 @@
-/*globals exports */
-
-/**
- * Workflow is a main part of js-workflow. You need to use it as starter point.
- */
-class Workflow {
-    constructor(data) {
-        this.data = data;
-        this.outNodes = [];
-    }
-
-    /**
-     * Not like a lot of workflow frameworks in various languages, you can start a lot of things from the starting point.
-     * js-workflow allows you to add many node directly at the start and not after a first useless node.
-     * Corresponding to a split into parallel execution
-     */
-        addOutNode(node) {
-        this.outNodes.push(node);
-    }
-
-    /**
-     * Classical toString method
-     */
-        toString() {
-        return 'data :' + JSON.stringify(this.data);
-    }
-
-    /**
-     * Will run. Surprise ;)
-     */
-        run() {
-        for (let n in this.outNodes) {
-            this.outNodes[n].run(this.data);
-        }
-    }
-}
-
-exports.Workflow = Workflow;
-class Driver {
-    store() {
-        throw new Error('Don\'t use the class Driver directly please.');
-    }
-}
-
-exports.Driver = Driver;
-class ConsoleDriver extends Driver {
-    constructor() {
-        super();
-    }
-
-    store(data) {
-        if ('object' === typeof data) {
-            console.log(JSON.stringify(data));
-        } else {
-            if (undefined !== data && undefined !== data.toString) {
-                console.log(data.toString());
-            } else {
-                console.log(data);
-            }
-        }
-    }
-}
-
-exports.ConsoleDriver = ConsoleDriver;
 /**
  * Node is the other main thing. Define the master pieces of a node behavior. You should not use it directly but inherit of it.
  */
@@ -145,6 +81,74 @@ class Node {
 }
 
 exports.Node = Node;
+/*globals exports */
+
+/**
+ * Workflow is a main part of js-workflow. You need to use it as starter point.
+ */
+class Workflow {
+    constructor(data) {
+        this.data = data;
+        this.outNodes = [];
+    }
+
+    /**
+     * Not like a lot of workflow frameworks in various languages, you can start a lot of things from the starting point.
+     * js-workflow allows you to add many node directly at the start and not after a first useless node.
+     * Corresponding to a split into parallel execution
+     */
+        addOutNode(node) {
+        if (node instanceof Node) {
+            this.outNodes.push(node);
+        } else {
+            throw new Error('Not a node instance.');
+        }
+    }
+
+    /**
+     * Classical toString method
+     */
+        toString() {
+        return 'data :' + JSON.stringify(this.data);
+    }
+
+    /**
+     * Will run. Surprise ;)
+     */
+        run() {
+        for (let n in this.outNodes) {
+            this.outNodes[n].run(this.data);
+        }
+    }
+}
+
+exports.Workflow = Workflow;
+class Driver {
+    store() {
+        throw new Error('Don\'t use the class Driver directly please.');
+    }
+}
+
+exports.Driver = Driver;
+class ConsoleDriver extends Driver {
+    constructor() {
+        super();
+    }
+
+    store(data) {
+        if ('object' === typeof data) {
+            console.log(JSON.stringify(data));
+        } else {
+            if (undefined !== data && undefined !== data.toString) {
+                console.log(data.toString());
+            } else {
+                console.log(data);
+            }
+        }
+    }
+}
+
+exports.ConsoleDriver = ConsoleDriver;
 /**
  * ConditionnalNode can run only if the condition passed in params is true.
  * It is like an XOR split
