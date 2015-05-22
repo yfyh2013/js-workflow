@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.0.1
+
+Simplified, so better, building process. Added unit tests.
+
 ## Version 2.0.0
 
 Major changes : A unique builded file for ES6 usage and a unique builded file for ES5. Better unit tests coverage rate.
