@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.0.2
+
+More unit tests on XorMergeNode, SynchronizingNode, MergeNode and Node.
+
 ## Version 2.0.1
 
 Simplified, so better, building process. Added unit tests.
