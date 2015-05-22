@@ -186,7 +186,7 @@ describe('XorMergeNode', function () {
                 done();
             });
 
-            it('will return false for a inNode which throw during canRun', function (done) {
+            it('will return false for a inNode which is not finished', function (done) {
                 var condNode = new XorMergeNode(),
                     aFailNode = new Node();
 
@@ -200,7 +200,7 @@ describe('XorMergeNode', function () {
                 done();
             });
 
-            it('will return false for a inNode which throw during canRun', function (done) {
+            it('will return false for a inNode which is finished', function (done) {
                 var condNode = new XorMergeNode(),
                     aFailNode = new Node(),
                     bFailNode = new Node();

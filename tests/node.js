@@ -275,20 +275,18 @@ describe('Node', function () {
                 expect(arg).toBe(8);
                 expect(arg).toBeNumber();
                 testCounter += 1;
-                return true;
+                return false;
             };
-            nodeB.run = function (arg) {
-                expect(arg).toBe(8);
-                expect(arg).toBeNumber();
+            nodeB.run = function () {
                 testCounter += 1;
-                return true;
+                expect(true).toBe(false);
             };
 
             nodeA.addOutNode(nodeB);
 
             nodeA.run(8);
 
-            expect(testCounter).toBe(2);
+            expect(testCounter).toBe(1);
             done();
         });
     });

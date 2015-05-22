@@ -317,11 +317,15 @@ var SynchronizingNode = (function (_Node2) {
                 iterateurInNodes = 0,
                 inNodesLength = this.inNodes.length;
 
-            while (true === retour && iterateurInNodes < inNodesLength) {
-                if (!this.inNodes[iterateurInNodes].isFinished()) {
-                    retour = false;
+            try {
+                while (true === retour && iterateurInNodes < inNodesLength) {
+                    if (!this.inNodes[iterateurInNodes].isFinished()) {
+                        retour = false;
+                    }
+                    iterateurInNodes += 1;
                 }
-                iterateurInNodes += 1;
+            } catch (eX) {
+                retour = false;
             }
 
             return retour;
