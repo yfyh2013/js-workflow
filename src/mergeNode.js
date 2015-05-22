@@ -1,7 +1,3 @@
-/*globals exports, require */
-
-var Node = require('./node').Node;
-
 /**
  * MergeNode is the representation of logical operator OR
  */

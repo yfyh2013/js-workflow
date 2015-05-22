@@ -1,6 +1,6 @@
 /*globals require, describe, it, expect */
 
-var Node = require('./../lib/node').Node;
+var Node = require('./../index').Node;
 require('jasmine-expect');
 
 describe('Node', function () {
@@ -21,7 +21,7 @@ describe('Node', function () {
 
     it('should throw when bad call', function (done) {
         try {
-            var node = Node();
+            Node();
             expect(2).toBe(3);
         } catch (eX) {
             expect(typeof eX).toBe('object');

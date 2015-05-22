@@ -1,6 +1,6 @@
 /*globals require, describe, it, expect */
 
-var Workflow = require('./../lib/workflow').Workflow;
+var Workflow = require('./../index').Workflow;
 require('jasmine-expect');
 
 describe('Workflow', function () {

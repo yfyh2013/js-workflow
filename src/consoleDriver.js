@@ -1,7 +1,3 @@
-/*globals exports, require */
-
-var Driver = require('./driver.js').Driver;
-
 class ConsoleDriver extends Driver {
     constructor() {
         super();

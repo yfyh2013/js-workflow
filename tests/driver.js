@@ -1,6 +1,6 @@
 /*globals require, describe, it, expect */
 
-var Driver = require('./../lib/driver').Driver;
+var Driver = require('./../index').Driver;
 
 describe('Driver', function () {
     it('should be defined', function (done) {
@@ -10,7 +10,7 @@ describe('Driver', function () {
 
     it('should throw when bad call', function (done) {
         try {
-            var node = Driver();
+            Driver();
             expect(2).toBe(3);
         } catch (eX) {
             expect(typeof eX).toBe('object');

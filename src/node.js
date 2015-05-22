@@ -1,5 +1,3 @@
-/*globals exports */
-
 /**
  * Node is the other main thing. Define the master pieces of a node behavior. You should not use it directly but inherit of it.
  */

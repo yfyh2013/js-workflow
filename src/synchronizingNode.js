@@ -1,7 +1,3 @@
-/*globals exports, require */
-
-var Node = require('./node').Node;
-
 /**
  * SynchronizingNode is the representation of logical operator AND
  */

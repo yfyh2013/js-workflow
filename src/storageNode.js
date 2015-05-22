@@ -1,8 +1,3 @@
-/*globals exports, require, Driver */
-
-var Node = require('./node').Node,
-    Driver = require('./../lib/driver').Driver;
-
 /**
  * StorageNode will only store the state of data passed to it.
  *

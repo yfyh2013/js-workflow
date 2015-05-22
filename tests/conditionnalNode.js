@@ -1,7 +1,7 @@
 /*globals require, describe, it, expect */
 
-var ConditionnalNode = require('./../lib/conditionnalNode').ConditionnalNode,
-    Node = require('./../lib/node').Node;
+var ConditionnalNode = require('./../index').ConditionnalNode,
+    Node = require('./../index').Node;
 
 describe('ConditionnalNode', function () {
     it('should be defined', function (done) {
@@ -12,7 +12,7 @@ describe('ConditionnalNode', function () {
 
     it('should throw when bad call', function (done) {
         try {
-            var node = ConditionnalNode();
+            ConditionnalNode();
             expect(2).toBe(3);
         } catch (eX) {
             expect(typeof eX).toBe('object');

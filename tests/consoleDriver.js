@@ -1,6 +1,6 @@
 /*globals require, describe, it, expect */
 
-var ConsoleDriver = require('./../lib/consoleDriver').ConsoleDriver;
+var ConsoleDriver = require('./../index').ConsoleDriver;
 
 describe('ConsoleDriver', function () {
     it('should be defined', function (done) {
@@ -10,7 +10,7 @@ describe('ConsoleDriver', function () {
 
     it('should throw when bad call', function (done) {
         try {
-            var node = ConsoleDriver();
+            ConsoleDriver();
             expect(2).toBe(3);
         } catch (eX) {
             expect(typeof eX).toBe('object');
@@ -57,7 +57,8 @@ describe('ConsoleDriver', function () {
 
         it('should call console log for primitive values', function (done) {
             var theConsole = new ConsoleDriver(),
-                counter = 0;
+                counter = 0,
+                theData;
 
             console.log = function (data) {
                 expect(data).toBeDefined();

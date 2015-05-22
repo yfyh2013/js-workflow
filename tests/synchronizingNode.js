@@ -1,6 +1,6 @@
 /*globals require, describe, it, expect */
 
-var SynchronizingNode = require('./../lib/synchronizingNode').SynchronizingNode;
+var SynchronizingNode = require('./../index').SynchronizingNode;
 
 describe('SynchronizingNode', function () {
     it('should be defined', function (done) {

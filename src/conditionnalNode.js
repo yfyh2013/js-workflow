@@ -1,7 +1,3 @@
-/*globals exports, require */
-
-var Node = require('./node').Node;
-
 /**
  * ConditionnalNode can run only if the condition passed in params is true.
  * It is like an XOR split

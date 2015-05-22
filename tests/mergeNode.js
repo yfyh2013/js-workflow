@@ -1,8 +1,6 @@
 /*globals require, describe, it, expect */
 
-var MergeNode = require('./../lib/mergeNode').MergeNode,
-    Node = require('./../lib/node').Node,
-    Workflow = require('./../lib/workflow').Workflow;
+var MergeNode = require('./../index').MergeNode;
 
 describe('MergeNode', function () {
     it('should be defined', function (done) {

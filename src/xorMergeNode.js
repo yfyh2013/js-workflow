@@ -1,7 +1,3 @@
-/*globals exports, require */
-
-var Node = require('./node').Node;
-
 /**
  * XorMergeNode is the representation of logical operator XOR
  * failCallback parameter function is optional. It receives, in this order : err, the problem which happened, data, data passed to the node

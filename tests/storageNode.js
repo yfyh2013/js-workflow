@@ -1,7 +1,7 @@
 /*globals require, describe, it, expect */
 
-var StorageNode = require('./../lib/storageNode').StorageNode,
-    ConsoleDriver = require('./../lib/consoleDriver').ConsoleDriver;
+var StorageNode = require('./../index').StorageNode,
+    ConsoleDriver = require('./../index').ConsoleDriver;
 
 describe('StorageNode', function () {
     it('should be defined', function (done) {
@@ -21,7 +21,7 @@ describe('StorageNode', function () {
 
     it('should throw when bad call', function (done) {
         try {
-            var node = StorageNode(new ConsoleDriver());
+            StorageNode(new ConsoleDriver());
             expect(2).toBe(3);
         } catch (eX) {
             expect(typeof eX).toBe('object');

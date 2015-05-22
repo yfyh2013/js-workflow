@@ -1,7 +1,7 @@
 /*globals require, describe, it, expect */
 
-var XorMergeNode = require('./../lib/xorMergeNode').XorMergeNode,
-    Node = require('./../lib/node').Node;
+var XorMergeNode = require('./../index').XorMergeNode,
+    Node = require('./../index').Node;
 
 describe('XorMergeNode', function () {
     it('should be defined', function (done) {
@@ -24,7 +24,7 @@ describe('XorMergeNode', function () {
 
     it('should throw when bad call', function (done) {
         try {
-            var node = XorMergeNode();
+            XorMergeNode();
             expect(2).toBe(3);
         } catch (eX) {
             expect(typeof eX).toBe('object');
@@ -99,7 +99,7 @@ describe('XorMergeNode', function () {
             done();
         });
 
-        describe('#inNodes', function (done) {
+        describe('#inNodes', function () {
             it('#with a correct Node arg', function (done) {
                 var condNode = new XorMergeNode(),
                     aNode = new Node();
@@ -109,7 +109,7 @@ describe('XorMergeNode', function () {
                     expect(condNode.inNodes).toBeNonEmptyArray();
                     expect(condNode.inNodes.length).toBe(1);
                     expect(condNode.inNodes[0]).toBeObject();
-                    expect(condNode.inNodes[0] instanceof Node).toBeTruthy()
+                    expect(condNode.inNodes[0] instanceof Node).toBeTruthy();
                 } catch (eX) {
                     expect(2).toBe(3);
                 }
@@ -117,8 +117,7 @@ describe('XorMergeNode', function () {
             });
 
             it('#with a dirty arg', function (done) {
-                var condNode = new XorMergeNode(),
-                    aNode = new Node();
+                var condNode = new XorMergeNode();
 
                 try {
                     condNode.addInNodes();
@@ -238,7 +237,7 @@ describe('XorMergeNode', function () {
                 expect(condNode.canRun()).toBeTruthy();
                 done();
             });
-        })
+        });
 
         describe('#run', function () {
             it('should be defined', function (done) {

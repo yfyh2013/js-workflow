@@ -1,4 +1,5 @@
 /*globals module, require */
+/*eslint camelcase: [0, {properties: "always"}]*/
 
 module.exports = function (grunt) {
     // Load grunt tasks automatically
@@ -15,15 +16,7 @@ module.exports = function (grunt) {
         babel: {
             lib: {
                 files: {
-                    'lib/conditionnalNode.js': 'src/conditionnalNode.js',
-                    'lib/consoleDriver.js': 'src/consoleDriver.js',
-                    'lib/driver.js': 'src/driver.js',
-                    'lib/mergeNode.js': 'src/mergeNode.js',
-                    'lib/node.js': 'src/node.js',
-                    'lib/storageNode.js': 'src/storageNode.js',
-                    'lib/synchronizingNode.js': 'src/synchronizingNode.js',
-                    'lib/workflow.js': 'src/workflow.js',
-                    'lib/xorMergeNode.js': 'src/xorMergeNode.js'
+                    './index.js': './index.es6'
                 }
             }
         },
@@ -33,8 +26,8 @@ module.exports = function (grunt) {
                 configFile: '.eslint.rc'
             },
             target: [
-                '*.js',
-                'src/**/*.js',
+                'Gruntfile.js',
+                '*.es6',
                 'tests/*.js'
             ]
         },
@@ -49,15 +42,24 @@ module.exports = function (grunt) {
             }
         },
 
-        // Visualize JavaScript source complexity with plato.
-        plato: {
-            options: {},
-            all: {
-                files: {
-                    'plato': [
-                        '*.js'
-                    ]
-                }
+        concat: {
+            'options': {
+                'separator': '\n'
+            },
+            'lib': {
+                'src': [
+                    './src/workflow.js',
+                    './src/driver.js',
+                    './src/consoleDriver.js',
+                    './src/node.js',
+                    './src/conditionnalNode.js',
+                    './src/synchronizingNode.js',
+                    './src/mergeNode.js',
+                    './src/xorMergeNode.js',
+                    './src/storageNode.js'
+                ],
+                'dest': 'index.es6',
+                'nonull': 'true'
             }
         },
 
@@ -79,7 +81,7 @@ module.exports = function (grunt) {
                         consolidate: true
                     }
                 },
-                src: ['lib/**/*.js']
+                src: ['index.js']
             }
         }
     });
@@ -96,9 +98,5 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'babel',
         'jasmine_node'
-    ]);
-
-    grunt.registerTask('quality', [
-        'plato'
     ]);
 };
