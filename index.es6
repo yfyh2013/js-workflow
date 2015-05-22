@@ -276,11 +276,15 @@ class MergeNode extends Node {
             iterateurInNodes = 0,
             inNodesLength = this.inNodes.length;
 
-        while (false === retour && iterateurInNodes < inNodesLength) {
-            if (this.inNodes[iterateurInNodes].isFinished()) {
-                retour = true;
+        try {
+            while (false === retour && iterateurInNodes < inNodesLength) {
+                if (this.inNodes[iterateurInNodes].isFinished()) {
+                    retour = true;
+                }
+                iterateurInNodes += 1;
             }
-            iterateurInNodes += 1;
+        } catch (eX) {
+            retour = false;
         }
 
         return retour;
