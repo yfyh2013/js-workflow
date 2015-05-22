@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 2.0.0
+
+Major changes : A unique builded file for ES6 usage and a unique builded file for ES5. Better unit tests coverage rate.
+Minor changes : 
+- Adding some unit tests.
+- Lint the tests.
+- Remove plato, report loses its meaning with one unique file to look, implies a too big complexity. Waiting Harmony support to introduce it again.
+
 ## Version 1.3.1
 
 Adding a lot of unit tests (ConditionnalNode, XorMergeNode).
