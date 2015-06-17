@@ -31,6 +31,36 @@ describe('MergeNode', function () {
         done();
     });
 
+    describe('#addInNodes', function() {
+        it('will return an Exception for bad call', function (done) {
+            var condNode = new MergeNode(),
+                aNullNode;
+
+            try{
+                condNode.addInNodes(aNullNode);
+                expect(1).toBe(2);
+            }
+            catch(eX)
+            {
+                expect(typeof eX).toBe('object');
+                expect(eX instanceof Error).toBeTruthy();
+            }
+            done();
+        });
+
+        it('will add a node to inNodes', function (done) {
+            var condNode = new MergeNode(),
+                aNode = new Node(),
+                size = 0;
+            size = condNode.inNodes.length;
+            expect(condNode.addInNodes(aNode)).not.toBeDefined();
+            expect(condNode.inNodes.length).toBe(size + 1);
+            condNode.addInNodes(aNode);
+            expect(condNode.inNodes.length).toBe(size + 2);
+            done();
+        });
+    } );
+
     describe('#run', function () {
 
         it('will return false for an empty inNode', function (done) {
