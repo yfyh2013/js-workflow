@@ -70,6 +70,7 @@ describe('ConditionnalNode', function () {
                 var condNode = new ConditionnalNode();
                 expect(condNode.condition).toBeDefined();
                 expect(condNode.condition).toBeFunction();
+                expect(condNode.condition()).not.toBeDefined();
                 done();
             });
 
@@ -77,6 +78,7 @@ describe('ConditionnalNode', function () {
                 var condNode = new ConditionnalNode(undefined);
                 expect(condNode.condition).toBeDefined();
                 expect(condNode.condition).toBeFunction();
+
                 condNode = new ConditionnalNode(null);
                 expect(condNode.condition).toBeDefined();
                 expect(condNode.condition).toBeNull();
